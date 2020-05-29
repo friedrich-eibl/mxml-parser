@@ -3,8 +3,8 @@ import xml.sax
 ################################
 # TESTCASES:
 #xmlFile = 'test.mxml' 			# --- works
-xmlFile = 'test2.mxml'			# --- X
-#xmlFile = 'test3.mxml'			# --- X
+#xmlFile = 'test2.xml'			# --- X
+xmlFile = 'test3.xml'			# --- X
 ################################
 
 #################################
