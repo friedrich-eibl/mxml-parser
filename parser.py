@@ -16,24 +16,43 @@ xmlFile = 'test3.xml'			# --- X
 class sheetHandler(xml.sax.ContentHandler):
 	def __init__(self):
 		self.currcont = ""
-		self.name = ""
+		#data that is parsed for
+		self.step = ""
+		self.octave = ""
+		self.type = ""
+		#boolean values to prevent double parsing
+		self.octaveCount = 0
+		self.typeCount = 0 
 
 	#start element
 	def startElement(self, tag, attributes):
 		self.currcont = tag
 		if tag == 'note':
 			print('++++ Note ++++')
+			self.octaveCount = 0
+			self.typeCount = 0
 
 
 	#end element
 	def endElement(self, tag):
 		if self.currcont == 'step':
-			print(' Step: ' + self.name)
+			print(' Step: ' + self.step)
+		if self.currcont == 'octave' and self.octaveCount == 0:
+			print(' Octave: ' + self.octave)
+			self.octaveCount = 1
+		elif self.currcont == 'type' and self.typeCount == 0:
+			print(' Type: ' + self.type)
+			self.typeCount = 1
 
 	#characters
 	def characters(self, content):
 		if self.currcont == 'step':
-			self.name = content
+			self.step = content
+		if self.currcont == 'octave':
+			self.octave = content
+		elif self.currcont == 'type':
+			self.type = content
+
 
 parser = xml.sax.make_parser()
 handler = sheetHandler()
