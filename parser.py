@@ -2,9 +2,9 @@ import xml.sax
 
 ################################
 # TESTCASES:
-#xmlFile = 'test.mxml' 			# --- works
+xmlFile = 'test.mxml' 			# --- works
 #xmlFile = 'test2.xml'			# --- works
-xmlFile = 'test3.xml'			# --- works
+#xmlFile = 'test3.xml'			# --- works
 ################################
 
 #################################
@@ -32,7 +32,7 @@ class sheetHandler(xml.sax.ContentHandler):
 	def startElement(self, tag, attributes):
 		self.currcont = tag
 		if tag == 'note':
-			print('++++ Note ++++')
+			#print('++++ Note ++++')
 			self.octaveCount = 0
 			self.typeCount = 0
 			self.currNote = ""
@@ -40,14 +40,14 @@ class sheetHandler(xml.sax.ContentHandler):
 	#end element
 	def endElement(self, tag):
 		if self.currcont == 'step':
-			print(' Step: ' + self.step)
+			#print(' Step: ' + self.step)
 			self.currNote += self.step
 		if self.currcont == 'octave' and self.octaveCount == 0:
-			print(' Octave: ' + self.octave)
+			#print(' Octave: ' + self.octave)
 			self.octaveCount = 1
 			self.currNote += self.octave
 		elif self.currcont == 'type' and self.typeCount == 0:
-			print(' Type: ' + self.type)
+			#print(' Type: ' + self.type)
 			self.typeCount = 1
 			self.currNote += self.type
 			self.notes.append(self.currNote)
@@ -60,6 +60,9 @@ class sheetHandler(xml.sax.ContentHandler):
 			self.octave = content
 		elif self.currcont == 'type':
 			self.type = content
+	
+	def getNotes(self):
+		return self.notes
 
 
 parser = xml.sax.make_parser()
@@ -67,4 +70,4 @@ handler = sheetHandler()
 
 parser.setContentHandler(handler)
 parser.parse(xmlFile)
-print(handler.notes)
+#print(handler.notes)
