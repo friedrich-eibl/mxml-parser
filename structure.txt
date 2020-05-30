@@ -53,3 +53,8 @@ oder:
 array-representation:
 ["(step)(octave)(duration)",...]
 --UPDATE: use (type) instead of (duration) to avoid measure mistakes
+
+
+
+INFO: parses measures line by line and then moves on to next
+if multiple notes simultanously in same voice then from lower up.
