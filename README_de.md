@@ -52,6 +52,9 @@ handler2.key enthält die Vorzeichen als integer nach dem Quintenzirkel:
 - 0 für C-Dur/a-Moll
 - positive Zahlen für #'s 
 
+###Wichtig:
+Bis dato funktioniert der Player leider nur für einstimmige Notendarstellungen!
+
 ## Kontakt
 
 Bei Fragen oder Vorschlägen bitte Email an: friedrich.eibl@hu-berlin.de 
