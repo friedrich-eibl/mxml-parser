@@ -22,7 +22,7 @@ xmlFile = 'test2.xml'			# --- works
 #################################
 
 
-
+#get notes
 parser = xml.sax.make_parser()
 handler = sH()
 
@@ -30,6 +30,7 @@ parser.setContentHandler(handler)
 parser.parse(xmlFile)
 print(handler.notes)
 
+#get key and additional information
 parser2 = xml.sax.make_parser()
 handler2 = addInfo()
 
