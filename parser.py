@@ -2,7 +2,7 @@ import xml.sax
 
 ################################
 # TESTCASES:
-xmlFile = 'test.mxml' 			# --- works
+xmlFile = 'test2.xml' 			# --- works
 #xmlFile = 'test2.xml'			# --- works
 #xmlFile = 'test3.xml'			# --- works
 ################################
@@ -13,6 +13,26 @@ xmlFile = 'test.mxml' 			# --- works
 # (C) 2020 Friedrich Eibl		#
 #################################
 
+#addInfo parses any additional info like key
+class addInfo(xml.sax.ContentHandler):
+	def __init__(self):
+		self.currcont = ""
+		self.key = 0
+		self.keycounter = 0
+	def startElement(self, tag, attributes):
+		self.currcont = tag
+		#if tag == 'key':
+			#self.key = 0
+	def endElement(self, tag):
+		if self.currcont == 'fifths' and self.keycounter == 0:
+			self.key = self.key
+			#print("Key: " + self.key +'.')
+	def characters(self, content):
+		if self.currcont == 'fifths' and self.keycounter == 0:
+			self.key = content
+			self.keycounter += 1
+
+#the sheetHandler gets the notes
 class sheetHandler(xml.sax.ContentHandler):
 	def __init__(self):
 		self.currcont = ""
@@ -70,4 +90,13 @@ handler = sheetHandler()
 
 parser.setContentHandler(handler)
 parser.parse(xmlFile)
+
 #print(handler.notes)
+
+parser2 = xml.sax.make_parser()
+handler2 = addInfo()
+
+parser2.setContentHandler(handler2)
+parser2.parse(xmlFile)
+
+#print(handler2.key)

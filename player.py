@@ -1,6 +1,7 @@
 import xml.sax
 #import parser
 from parser import sheetHandler as sH
+from parser import addInfo
 from pysine import sine
 import notes
 import time
@@ -29,11 +30,17 @@ parser.setContentHandler(handler)
 parser.parse(xmlFile)
 print(handler.notes)
 
+parser2 = xml.sax.make_parser()
+handler2 = addInfo()
+
+parser2.setContentHandler(handler2)
+parser2.parse(xmlFile)
+print("Key: ", handler2.key)
+
 noteLength = 0
 metrum=2
 
-### move key functionality to parser later
-key=6 #amount of b's(negative) or #'s(positive)
+key = int(handler2.key) #amount of b's(negative) or #'s(positive)
 
 
 #TODO: use it in while-loop to adjust the tones accordingly by inserting a b in the name if negative and inserting a b + counting up one letter if #
