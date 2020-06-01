@@ -51,7 +51,7 @@ print(handler2.key) #prints out key
 #### handler.notes
 handler.notes is an Array, which stores all notes of the parsed file using following format:
 
-handler.notes = ["C1whole", "Ab4eighth", . . . ]  or generally speaking handler.notes = [<step><octave><duration>]
+handler.notes = ["C1whole", "Ab4eighth", . . . ]  or generally speaking handler.notes[i] = "step"+"octave"+"duration"
 
 #### handler2.key
 handler2.key contains the key as an integer referencing its spot on the circle of fifths:
@@ -67,3 +67,7 @@ As of this stage the Player only works for single-voice sheet music!
 ## Contact
 
 For questions/requests send an e-mail to: friedrich-eibl@hu-berlin.de 
+
+## License
+
+This project is under the [GNU General Public License](LICENSE). 2020
